@@ -1,10 +1,15 @@
+using ECommerce.Application.Features.Products.Commands.CreateProduct;
 using ECommerce.Application.Mappings;
+using ECommerce.Application.Validators.Categories;
+using ECommerce.Application.Validators.Products;
 using ECommerce.Domain.Interfaces;
 using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
-using ECommerce.Application.Features.Products.Commands.CreateProduct;
+using Microsoft.EntityFrameworkCore;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +24,14 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<CreateProductCommand>());
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProductDtoValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCategoryDtoValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
+
 
 // Add services to the container.
 

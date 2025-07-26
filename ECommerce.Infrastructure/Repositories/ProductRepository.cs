@@ -16,10 +16,10 @@ public class ProductRepository : Repository<Product>, IProductRepository
             .ToListAsync();
     }
 
-    public async Task<Product?> GetByIdWithCategoryAsync(string name)
+    public async Task<Product?> GetByIdWithCategoryAsync(Guid id)
     {
         return await _context.Products
             .Include(p => p.Category)
-            .FirstOrDefaultAsync(p => p.Name == name);
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 }
