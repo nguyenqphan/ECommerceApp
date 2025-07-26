@@ -23,7 +23,7 @@ namespace ECommerce.Application.Features.Products.Queries.GetProductById
 
         public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetByIdAsync(request.ProductId);
+            var product = await _productRepository.GetByIdWithCategoryAsync(request.ProductId);
             if (product == null)
             {
                 return null; // or throw an exception if preferred
