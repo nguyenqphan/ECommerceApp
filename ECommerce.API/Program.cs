@@ -1,7 +1,8 @@
-using ECommerce.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using ECommerce.Application.Mappings;
 using ECommerce.Domain.Interfaces;
+using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Add services to the container.
 
