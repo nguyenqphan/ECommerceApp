@@ -2,6 +2,7 @@
 using ECommerce.Application.DTOs;
 using ECommerce.Domain.Entities;
 
+
 namespace ECommerce.Application.Mappings;
 
 public class MappingProfile : Profile
@@ -21,5 +22,6 @@ public class MappingProfile : Profile
         CreateMap<Category, CategoryDto>();
         CreateMap<CreateCategoryDto, Category>();
         CreateMap<UpdateCategoryDto, Category>();
+        CreateMap<Category, CategoryDto>();
     }
 }

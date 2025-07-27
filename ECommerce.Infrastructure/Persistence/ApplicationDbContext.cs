@@ -20,6 +20,11 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Decimal precision for Price
+        modelBuilder.Entity<Product>()
+            .Property(p => p.Price)
+            .HasPrecision(18, 2);
+
         // Optional: Fluent API configuration
         modelBuilder.Entity<Category>()
             .HasMany(c => c.Products)
